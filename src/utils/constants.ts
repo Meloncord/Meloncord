@@ -191,6 +191,10 @@ export const Devs = /* #__PURE__*/ Object.freeze({
         name: "sunnie",
         id: 406028027768733696n
     },
+    Jay: {
+        name: "jay",
+        id: 1295104087880110171n
+    },
     axyie: {
         name: "'ax",
         id: 273562710745284628n
@@ -943,11 +947,34 @@ export const EquicordDevs = Object.freeze({
     Z1xus: {
         name: "Z1xus",
         id: 377450600797044746n,
-    }
+    },
+    jay: {
+        name: "jay",
+        id: 1295104087880110171n
+    },
+} satisfies Record<string, Dev>);
+
+export const MeloncordDevs = Object.freeze({
+    nobody: {
+        name: "nobody",
+        id: 0n
+    },
+    jay: {
+        name: "jay",
+        id: 1295104087880110171n
+    },
 } satisfies Record<string, Dev>);
 
 // iife so #__PURE__ works correctly
 export const VencordDevsById = /* #__PURE__*/ (() =>
+    Object.freeze(Object.fromEntries(
+        Object.entries(Devs)
+            .filter(d => d[1].id !== 0n)
+            .map(([_, v]) => [v.id, v] as const)
+    ))
+)() as Record<string, Dev>;
+
+export const MeloncordDevsById = /* #__PURE__*/ (() =>
     Object.freeze(Object.fromEntries(
         Object.entries(Devs)
             .filter(d => d[1].id !== 0n)

@@ -22,10 +22,10 @@ import ErrorBoundary from "@components/ErrorBoundary";
 import { Flex } from "@components/Flex";
 import { Heart } from "@components/Heart";
 import { openContributorModal } from "@components/PluginSettings/ContributorModal";
-import { Devs } from "@utils/constants";
+import { Devs, MeloncordDevs } from "@utils/constants";
 import { Logger } from "@utils/Logger";
 import { Margins } from "@utils/margins";
-import { isEquicordPluginDev, isPluginDev } from "@utils/misc";
+import { isEquicordPluginDev, isMeloncordPluginDev, isPluginDev } from "@utils/misc";
 import { closeModal, Modals, openModal } from "@utils/modal";
 import definePlugin from "@utils/types";
 import { Forms, Toasts, UserStore } from "@webpack/common";
@@ -33,6 +33,7 @@ import { User } from "discord-types/general";
 
 const CONTRIBUTOR_BADGE = "https://vencord.dev/assets/favicon.png";
 const EQUICORD_CONTRIBUTOR_BADGE = "https://i.imgur.com/57ATLZu.png";
+const MELONCORD_CONTRIBUTOR_BADGE = "https://raw.githubusercontent.com/LavaGang/MelonLoader.Installer/master/Resources/ML_Icon.png";
 
 const ContributorBadge: ProfileBadge = {
     description: "Vencord Contributor",
@@ -50,8 +51,17 @@ const EquicordContributorBadge: ProfileBadge = {
     onClick: (_, { userId }) => openContributorModal(UserStore.getUser(userId))
 };
 
+const MeloncordContributorBadge: ProfileBadge = {
+    description: "Meloncord Contributor",
+    image: MELONCORD_CONTRIBUTOR_BADGE,
+    position: BadgePosition.START,
+    shouldShow: ({ userId }) => isMeloncordPluginDev(userId),
+    onClick: (_, { userId }) => openContributorModal(UserStore.getUser(userId))
+};
+
 let DonorBadges = {} as Record<string, Array<Record<"tooltip" | "badge", string>>>;
 let EquicordDonorBadges = {} as Record<string, Array<Record<"tooltip" | "badge", string>>>;
+let MeloncordDonorBadges = {} as Record<string, Array<Record<"tooltip" | "badge", string>>>;
 
 async function loadBadges(url: string, noCache = false) {
     const init = {} as RequestInit;
@@ -63,16 +73,21 @@ async function loadBadges(url: string, noCache = false) {
 async function loadAllBadges(noCache = false) {
     const vencordBadges = await loadBadges("https://badges.vencord.dev/badges.json", noCache);
     const equicordBadges = await loadBadges("https://raw.githubusercontent.com/Equicord/Equibored/main/badges.json", noCache);
+    const meloncordBadges = await loadBadges("https://raw.githubusercontent.com/Melon-sodas/MelonsodaLLC/main/badges.json", noCache);
+
+
+
 
     DonorBadges = vencordBadges;
     EquicordDonorBadges = equicordBadges;
+    MeloncordDonorBadges = meloncordBadges;
 }
 
 
 export default definePlugin({
     name: "BadgeAPI",
     description: "API to add badges to users.",
-    authors: [Devs.Megu, Devs.Ven, Devs.TheSun],
+    authors: [Devs.Megu, Devs.Ven, Devs.TheSun, MeloncordDevs.jay],
     required: true,
     patches: [
         {
@@ -118,6 +133,7 @@ export default definePlugin({
     async start() {
         Vencord.Api.Badges.addBadge(ContributorBadge);
         Vencord.Api.Badges.addBadge(EquicordContributorBadge);
+        Vencord.Api.Badges.addBadge(MeloncordContributorBadge);
         await loadAllBadges();
     },
 
@@ -194,6 +210,75 @@ export default definePlugin({
                                     </Forms.FormText>
                                     <Forms.FormText className={Margins.top20}>
                                         Please consider supporting the development of Vencord by becoming a donor. It would mean a lot!
+                                    </Forms.FormText>
+                                </div>
+                            </Modals.ModalContent>
+                            <Modals.ModalFooter>
+                                <Flex style={{ width: "100%", justifyContent: "center" }}>
+                                    <DonateButton />
+                                </Flex>
+                            </Modals.ModalFooter>
+                        </Modals.ModalRoot>
+                    </ErrorBoundary>
+                ));
+            },
+        }));
+    },
+
+    getMeloncordDonorBadges(userId: string) {
+        return MeloncordDonorBadges[userId]?.map(badge => ({
+            image: badge.badge,
+            description: badge.tooltip,
+            position: BadgePosition.START,
+            props: {
+                style: {
+                    borderRadius: "50%",
+                    transform: "scale(0.9)" // The image is a bit too big compared to default badges
+                }
+            },
+            onClick() {
+                const modalKey = openModal(props => (
+                    <ErrorBoundary noop onError={() => {
+                        closeModal(modalKey);
+                        VencordNative.native.openExternal("https://github.com/sponsors/Vendicated");
+                    }}>
+                        <Modals.ModalRoot {...props}>
+                            <Modals.ModalHeader>
+                                <Flex style={{ width: "100%", justifyContent: "center" }}>
+                                    <Forms.FormTitle
+                                        tag="h2"
+                                        style={{
+                                            width: "100%",
+                                            textAlign: "center",
+                                            margin: 0
+                                        }}
+                                    >
+                                        <Heart />
+                                        Meloncord Donor
+                                    </Forms.FormTitle>
+                                </Flex>
+                            </Modals.ModalHeader>
+                            <Modals.ModalContent>
+                                <Flex>
+                                    <img
+                                        role="presentation"
+                                        src="https://raw.githubusercontent.com/LavaGang/MelonLoader.Installer/master/Resources/ML_Icon.png"
+                                        alt=""
+                                        style={{ margin: "auto" }}
+                                    />
+                                    <img
+                                        role="presentation"
+                                        src="https://raw.githubusercontent.com/LavaGang/MelonLoader.Installer/master/Resources/ML_Icon.png"
+                                        alt=""
+                                        style={{ margin: "auto" }}
+                                    />
+                                </Flex>
+                                <div style={{ padding: "1em" }}>
+                                    <Forms.FormText>
+                                        This Badge is a special perk for Meloncord Donors
+                                    </Forms.FormText>
+                                    <Forms.FormText className={Margins.top20}>
+                                        Please consider supporting the development of Meloncord by becoming a donor. It would mean a lot!
                                     </Forms.FormText>
                                 </div>
                             </Modals.ModalContent>
