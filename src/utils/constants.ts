@@ -959,6 +959,10 @@ export const MeloncordDevs = Object.freeze({
         name: "nobody",
         id: 0n
     },
+    nyx: {
+        name: "verticalsync",
+        id: 1207087393929171095n
+    },
     jay: {
         name: "jay",
         id: 1295104087880110171n

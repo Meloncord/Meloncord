@@ -51,7 +51,7 @@ import { User } from "discord-types/general";
 
 const CONTRIBUTOR_BADGE = "https://vencord.dev/assets/favicon.png";
 const EQUICORD_CONTRIBUTOR_BADGE = "https://i.imgur.com/57ATLZu.png";
-const MELONCORD_CONTRIBUTOR_BADGE = "https://raw.githubusercontent.com/LavaGang/MelonLoader.Installer/master/Resources/ML_Icon.png";
+const MELONCORD_CONTRIBUTOR_BADGE = "https://raw.githubusercontent.com/Melon-sodas/MelonsodaLLC/main/MC_Contrib_Logo.png";
 
 const ContributorBadge: ProfileBadge = {
     description: "Vencord Contributor",
@@ -258,7 +258,7 @@ export default definePlugin({
                 const modalKey = openModal(props => (
                     <ErrorBoundary noop onError={() => {
                         closeModal(modalKey);
-                        VencordNative.native.openExternal("https://github.com/sponsors/Vendicated");
+                        VencordNative.native.openExternal("https://github.com/sponsors/Melon-sodas");
                     }}>
                         <Modals.ModalRoot {...props}>
                             <Modals.ModalHeader>
@@ -280,13 +280,13 @@ export default definePlugin({
                                 <Flex>
                                     <img
                                         role="presentation"
-                                        src="https://raw.githubusercontent.com/LavaGang/MelonLoader.Installer/master/Resources/ML_Icon.png"
+                                        src="https://raw.githubusercontent.com/Melon-sodas/MelonsodaLLC/main/MC_Donor_Right.png"
                                         alt=""
                                         style={{ margin: "auto" }}
                                     />
                                     <img
                                         role="presentation"
-                                        src="https://raw.githubusercontent.com/LavaGang/MelonLoader.Installer/master/Resources/ML_Icon.png"
+                                        src="https://raw.githubusercontent.com/Melon-sodas/MelonsodaLLC/main/MC_Donor_Left.png"
                                         alt=""
                                         style={{ margin: "auto" }}
                                     />

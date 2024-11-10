@@ -45,7 +45,7 @@ interface PluginData {
     commands: Command[];
     required: boolean;
     enabledByDefault: boolean;
-    target: "discordDesktop" | "vencordDesktop" | "equicordDesktop" | "desktop" | "web" | "dev";
+    target: "discordDesktop" | "vencordDesktop" | "equicordDesktop" | "meloncordDesktop" | "desktop" | "web" | "dev";
     filePath: string;
 }
 
