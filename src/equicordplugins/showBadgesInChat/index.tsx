@@ -6,7 +6,7 @@
 
 import { addDecoration, removeDecoration } from "@api/MessageDecorations";
 import { Devs, EquicordDevs } from "@utils/constants";
-import { isEquicordPluginDev, isPluginDev } from "@utils/misc";
+import { isEquicordPluginDev, isMeloncordPluginDev, isPluginDev } from "@utils/misc";
 import definePlugin from "@utils/types";
 import { findByPropsLazy, findComponentByCodeLazy } from "@webpack";
 import badges from "plugins/_api/badges";
@@ -36,6 +36,30 @@ const discordBadges: readonly [number, string, string][] = Object.freeze([
 function CheckBadge({ badge, author }: { badge: string; author: User; }): JSX.Element | null {
 
     switch (badge) {
+        case "MeloncordDonor":
+            return (
+                <span style={{ order: settings.store.MeloncordDonorPosition }}>
+                    {badges.getMeloncordDonorBadges(author.id)?.map((badge: any) => (
+                        <RoleIconComponent
+                            className={roleIconClassName}
+                            name={badge.description}
+                            size={20}
+                            src={badge.image}
+                        />
+                    ))}
+                </span>
+            );
+        case "MeloncordContributer":
+            return isMeloncordPluginDev(author.id) ? (
+                <span style={{ order: settings.store.MeloncordContributorPosition }}>
+                    <RoleIconComponent
+                        className={roleIconClassName}
+                        name="Meloncord Contributor"
+                        size={20}
+                        src={"https://raw.githubusercontent.com/LavaGang/MelonLoader.Installer/master/Resources/ML_Icon.png"}
+                    />
+                </span>
+            ) : null;
         case "EquicordDonor":
             return (
                 <span style={{ order: settings.store.EquicordDonorPosition }}>
@@ -126,6 +150,8 @@ function ChatBadges({ author }: { author: User; }) {
         <span className="vc-sbic-badge-row" style={{ margin: "2px" }}>
             {settings.store.showEquicordDonor && <CheckBadge badge={"EquicordDonor"} author={author} />}
             {settings.store.showEquicordContributor && <CheckBadge badge={"EquicordContributer"} author={author} />}
+            {settings.store.showEquicordDonor && <CheckBadge badge={"MeloncordDonor"} author={author} />}
+            {settings.store.showEquicordContributor && <CheckBadge badge={"MeloncordContributer"} author={author} />}
             {settings.store.showVencordDonor && <CheckBadge badge={"VencordDonor"} author={author} />}
             {settings.store.showVencordContributor && <CheckBadge badge={"VencordContributer"} author={author} />}
             {settings.store.showDiscordProfile && <CheckBadge badge={"DiscordProfile"} author={author} />}

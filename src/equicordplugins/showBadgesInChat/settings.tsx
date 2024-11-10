@@ -33,6 +33,32 @@ const settings = definePluginSettings({
         hidden: true,
         default: 1
     },
+
+    showMeloncordDonor: {
+        type: OptionType.BOOLEAN,
+        description: "Enable to show Equicord Donor badges in chat.",
+        hidden: true,
+        default: true
+    },
+    MeloncordDonorPosition: {
+        type: OptionType.NUMBER,
+        description: "The position of the Equicord Donor badges.",
+        hidden: true,
+        default: 0
+    },
+    showMeloncordContributor: {
+        type: OptionType.BOOLEAN,
+        description: "Enable to show Equicord Contributor badges in chat.",
+        hidden: true,
+        default: true
+    },
+    MeloncordContributorPosition: {
+        type: OptionType.NUMBER,
+        description: "The position of the Equicord Contributor badge.",
+        hidden: true,
+        default: 1
+    },
+
     showVencordDonor: {
         type: OptionType.BOOLEAN,
         description: "Enable to show Vencord donor badges in chat.",
