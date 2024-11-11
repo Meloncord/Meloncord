@@ -31,6 +31,7 @@ export const DATA_DIR = process.env.EQUICORD_USER_DATA_DIR ?? process.env.VENCOR
 
 
 
+
 export const SETTINGS_DIR = join(DATA_DIR, "settings");
 export const THEMES_DIR = join(DATA_DIR, "themes");
 export const QUICKCSS_PATH = join(SETTINGS_DIR, "quickCss.css");
