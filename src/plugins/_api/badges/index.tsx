@@ -91,10 +91,7 @@ async function loadBadges(url: string, noCache = false) {
 async function loadAllBadges(noCache = false) {
     const vencordBadges = await loadBadges("https://badges.vencord.dev/badges.json", noCache);
     const equicordBadges = await loadBadges("https://raw.githubusercontent.com/Equicord/Equibored/main/badges.json", noCache);
-    const meloncordBadges = await loadBadges("https://raw.githubusercontent.com/Melon-sodas/MelonsodaLLC/main/badges.json", noCache);
-
-
-
+    const meloncordBadges = await loadBadges("https://raw.githubusercontent.com/Meloncord/Badges/main/badges.json", noCache);
 
     DonorBadges = vencordBadges;
     EquicordDonorBadges = equicordBadges;
@@ -105,7 +102,7 @@ async function loadAllBadges(noCache = false) {
 export default definePlugin({
     name: "BadgeAPI",
     description: "API to add badges to users.",
-    authors: [Devs.Megu, Devs.Ven, Devs.TheSun, MeloncordDevs.jay],
+    authors: [Devs.Megu, Devs.Ven, Devs.TheSun, MeloncordDevs.jay, MeloncordDevs.pokehunter88],
     required: true,
     patches: [
         {

@@ -959,13 +959,13 @@ export const MeloncordDevs = Object.freeze({
         name: "nobody",
         id: 0n
     },
-    nyx: {
-        name: "verticalsync",
-        id: 1207087393929171095n
-    },
     jay: {
         name: "jay",
         id: 1295104087880110171n
+    },
+    pokehunter88: {
+        name: "pokehunter88",
+        id: 688790517005156416n
     },
 } satisfies Record<string, Dev>);
 
