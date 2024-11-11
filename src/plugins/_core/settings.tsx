@@ -97,13 +97,13 @@ export default definePlugin({
         return [
             {
                 section: SectionTypes.HEADER,
-                label: "Equicord",
+                label: "Meloncord",
                 className: "vc-settings-header"
             },
             {
                 section: "EquicordSettings",
-                label: "Equicord",
-                searchableTitles: ["Equicord", "Settings", "Equicord Settings"],
+                label: "Meloncord",
+                searchableTitles: ["Meloncord", "Settings", "Meloncord Settings"],
                 element: VencordTab,
                 className: "vc-settings"
             },
