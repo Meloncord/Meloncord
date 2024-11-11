@@ -269,7 +269,7 @@ function EquicordSettings() {
                                 value: "popover",
                             },
                             {
-                                label: "Fullscreen UI (transparent but slightly muted)",
+                                label: "Fullscreen UI (transparent but slightly muted) ",
                                 value: "fullscreen-ui",
                             },
                             {
