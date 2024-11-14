@@ -11,7 +11,7 @@ import definePlugin from "@utils/types";
 
 export default definePlugin({
     name: "Debug Information",
-    authors: [MeloncordDevs.jay, MeloncordDevs.fusi],
+    authors: [MeloncordDevs.jay, MeloncordDevs.okfusi],
     description: "Logs load time, last crash reason, and other information via notifications",
     patches: [],
     async start() {
