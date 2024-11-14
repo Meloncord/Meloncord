@@ -28,7 +28,7 @@ export default definePlugin({
         }, 0);
 
 
-        const lastCrashReason = (await tryOrElse(() => DiscordNative.processUtils.getLastCrash(), undefined))?.rendererCrashReason ?? "N/A";
+        const lastCrashReason = (await tryOrElse(() => DiscordNative.processUtils.getLastCrash(), undefined))?.rendererCrashReason ?? "N/A Or No Recent Crash";
         showNotification({
             title: "Debug Information",
             body: `Last Crash Reason: ${lastCrashReason}`,

@@ -968,7 +968,7 @@ export const MeloncordDevs = Object.freeze({
         id: 688790517005156416n
     },
     fusi: {
-        name: "fusi",
+        name: "okfusi",
         id: 1261058129949360290n
     },
 } satisfies Record<string, Dev>);
