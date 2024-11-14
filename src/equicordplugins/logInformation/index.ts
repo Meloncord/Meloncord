@@ -17,7 +17,6 @@ export default definePlugin({
     async start() {
         const startTime = Date.now();
 
-
         setTimeout(() => {
             const loadTime = Date.now() - startTime;
             showNotification({
@@ -26,7 +25,6 @@ export default definePlugin({
                 permanent: false
             });
         }, 0);
-
 
         const lastCrashReason = (await tryOrElse(() => DiscordNative.processUtils.getLastCrash(), undefined))?.rendererCrashReason ?? "N/A Or No Recent Crash";
         showNotification({
