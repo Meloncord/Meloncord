@@ -967,6 +967,10 @@ export const MeloncordDevs = Object.freeze({
         name: "pokehunter88",
         id: 688790517005156416n
     },
+    fusi: {
+        name: "fusi",
+        id: 1261058129949360290n
+    },
 } satisfies Record<string, Dev>);
 
 // iife so #__PURE__ works correctly

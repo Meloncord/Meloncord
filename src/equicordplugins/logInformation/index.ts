@@ -6,16 +6,16 @@
 
 import { showNotification } from "@api/Notifications";
 import { MeloncordDevs } from "@utils/constants";
+import { tryOrElse } from "@utils/misc";
 import definePlugin from "@utils/types";
 
 export default definePlugin({
     name: "Debug Information",
-    authors: [MeloncordDevs.jay],
-    description: "Logs load time and other information via notifications",
+    authors: [MeloncordDevs.jay, MeloncordDevs.pokehunter88],
+    description: "Logs load time, last crash reason, and other information via notifications",
     patches: [],
-    start() {
+    async start() {
         const startTime = Date.now();
-
 
 
         setTimeout(() => {
@@ -28,11 +28,12 @@ export default definePlugin({
         }, 0);
 
 
-        // showNotification({
-        //     title: "Debug Information",
-        //     body: `Active Guild ID: ${SelectedGuildStore.getGuildId()}\nActive Channel ID: ${SelectedChannelStore.getChannelId()}`,
-        //     permanent: false
-        // });
+        const lastCrashReason = (await tryOrElse(() => DiscordNative.processUtils.getLastCrash(), undefined))?.rendererCrashReason ?? "N/A";
+        showNotification({
+            title: "Debug Information",
+            body: `Last Crash Reason: ${lastCrashReason}`,
+            permanent: false
+        });
     },
 
     stop() {
@@ -43,4 +44,3 @@ export default definePlugin({
         });
     }
 });
-
