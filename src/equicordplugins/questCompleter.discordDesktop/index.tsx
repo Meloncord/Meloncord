@@ -192,7 +192,7 @@ export default definePlugin({
     authors: [Devs.HappyEnderman, EquicordDevs.SerStars, EquicordDevs.thororen],
     settingsAboutComponent: () => <>
         <Forms.FormText className="remixme-warning">
-            We can't guarantee this plugin won't get you warned or banned.
+            We can't guarantee this plugin won't get you warned or banned. (Using this plugin alot WILL get you warned and possibly banned.)
         </Forms.FormText>
     </>,
     patches: [

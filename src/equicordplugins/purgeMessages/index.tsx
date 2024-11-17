@@ -52,7 +52,7 @@ export default definePlugin({
     authors: [EquicordDevs.bhop, Devs.nyx],
     settingsAboutComponent: () => <>
         <Forms.FormText className="purge-warning">
-            We can't guarantee this plugin won't get you warned or banned.
+            We can't guarantee this plugin won't get you warned or banned. (You may get ratelimited if you use this alot / for a long period of time.)
         </Forms.FormText>
     </>,
     commands: [
